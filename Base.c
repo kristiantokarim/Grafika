@@ -48,7 +48,7 @@ void printRectangle(int height, int width, int x, int y) {
         }
     }
 }
-
+//
 //print sudut kiri bawah
 void printLeftDownTriangle(int height, int width, int x, int y) {
     long int location = 0;
