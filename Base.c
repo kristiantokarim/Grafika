@@ -80,22 +80,29 @@ void printMatrix(int x, int y) {
   int c,i,j;
   long int location = 0;
   FILE * inFile = fopen("in.txt","r");
-  for (i = y ; i < y + 248 ; i++) {
-    for (j = x ; j < x + 526 ; j++) {
+  for (i = y ; i < y + 143 ; i++) {
+    for (j = x ; j < x + 323 ; j++) {
       location = (j+vinfo.xoffset) * (vinfo.bits_per_pixel/8) +
                   (i+vinfo.yoffset) * finfo.line_length;
       fscanf(inFile, "%d", &c);
       printf("%d ",c);
       if(isValid(j,i)) {
         if (vinfo.bits_per_pixel == 32) {
-            *(fbp + location) = c;        // Some blue
+	
+            *(fbp + location) = (100 - (i-100))/3;        // Some blue
+            *(fbp + location + 1) = (100 - (i + j-100))/3;     // A little green
+            *(fbp + location + 2) = (100- (j-100))/3;    // A lot of red
+            *(fbp + location + 3) = 0;      // No transparency
+		if (c == 0) {
+			*(fbp + location) = c;        // Some blue
             *(fbp + location + 1) = c;     // A little green
             *(fbp + location + 2) = c;    // A lot of red
-            *(fbp + location + 3) = 0;      // No transparency
+            *(fbp + location + 3) = 0;      // No transparency		
+}
         } else  { //assume 16bpp
-            int b = c;
-            int g = c;     // A little green
-            int r = c;    // A lot of red
+            int b = 150+(i-100)/2;
+            int g = 100 +(i + j-100)/10;     // A little green
+            int r = 200-(j-100)/5;    // A lot of red
             unsigned short int t = r<<11 | g << 5 | b;
             *((unsigned short int*)(fbp + location)) = t;
         }

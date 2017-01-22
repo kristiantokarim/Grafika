@@ -41,7 +41,7 @@ int main() {
     printf("The framebuffer device was mapped to memory successfully.\n");
 
     // Koordinat pixel
-    int x = 350;
+    int x = 450;
     int y = 100;
     int height = 200;
     int width = 30;
@@ -50,9 +50,9 @@ int main() {
     /* Membuat pergerakan tulian */
     system("setterm -cursor off");
     printBackground();
+    printBackground();	
     for(i=0; i<1000; i++) {
-        printMatrix(x,1000-10*i);
-        printBackground();
+        printMatrix(x,1000-2*i);
     }
     system("setterm -cursor on");
 
