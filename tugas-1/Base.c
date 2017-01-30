@@ -1,4 +1,3 @@
-/* Nama File : alphabet.c */
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -88,7 +87,7 @@ void printMatrix(int x, int y) {
       printf("%d ",c);
       if(isValid(j,i)) {
         if (vinfo.bits_per_pixel == 32) {
-	
+
             *(fbp + location) = (100 - (i-100))/3;        // Some blue
             *(fbp + location + 1) = (100 - (i + j-100))/3;     // A little green
             *(fbp + location + 2) = (100- (j-100))/3;    // A lot of red
@@ -97,7 +96,7 @@ void printMatrix(int x, int y) {
 			*(fbp + location) = c;        // Some blue
             *(fbp + location + 1) = c;     // A little green
             *(fbp + location + 2) = c;    // A lot of red
-            *(fbp + location + 3) = 0;      // No transparency		
+            *(fbp + location + 3) = 0;      // No transparency
 }
         } else  { //assume 16bpp
             int b = 150+(i-100)/2;
